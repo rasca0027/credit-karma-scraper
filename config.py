@@ -1,6 +1,7 @@
 from typing import Dict, List
 
 import yaml
+import datetime
 
 DEFAULT_CONFIG = 'config.yml'
 
@@ -17,6 +18,14 @@ class Config():
     @property
     def list(self) -> List:
         return self._config['sources']
+
+    @property
+    def today(self) -> str:
+        return datetime.datetime.now().strftime("%Y-%m-%d")
+
+    @property
+    def outputfile(self) -> str:
+        return self._config["outputfile"].replace("{date}", self.today)
 
 
 if __name__ == '__main__':

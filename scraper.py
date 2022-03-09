@@ -30,18 +30,18 @@ class CreditKarmaScraper(WebScraper):
         soup = BeautifulSoup(self.html, 'html.parser')
         all_cards = soup.find_all('h3')
         rankings = []
-        existing_cards = set()
+        existing_cards = []
 
-        for i, card in enumerate(all_cards):
+        for card in all_cards:
             cleaned_card_name = re.sub(r"[^a-zA-Z0-9 ]", "", card.text)
 
             if cleaned_card_name not in existing_cards:
+                existing_cards.append(cleaned_card_name)
                 rankings.append({
-                    "rank": i + 1,
+                    "rank": len(existing_cards),
                     "card": cleaned_card_name,
                     "source": self.page_title,
                 })
-                existing_cards.add(cleaned_card_name)
 
         return rankings
 
