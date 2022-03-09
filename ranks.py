@@ -26,28 +26,21 @@ def save(data: List[dict], filename: str) -> None:
         writer.writeheader()
         writer.writerows(data)
 
-
-
-
-
 if __name__ == "__main__":
-    # urls of web pages to scrape
     config = Config()
     petal_rankings = []
     today =  datetime.now().strftime("%m/%d/%Y")
     for item in config.list:
         web_scraper = scraper.determine_scraper(item["url"], item["name"])
         rankings: List[Dict] = web_scraper.get_rankings()
-        display_ranking(rankings, item["name"])
+        # display_ranking(rankings, item["name"])
         rank = { "date": today,
                  "pate_title" : item["name"], 
                  "p1_rank": get_card_ranking(PETAL1, rankings),
                  "p2_rank": get_card_ranking(PETAL2, rankings),
         }
-
         petal_rankings.append(rank)
  
-
-    print("PETAL RANKINGS")
-    pprint(petal_rankings)
+    # print("PETAL RANKINGS")
+    # pprint(petal_rankings)
     save(petal_rankings, 'petal_rankings.csv')
