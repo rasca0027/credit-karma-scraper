@@ -1,4 +1,3 @@
-from datetime import date, datetime
 from typing import Dict, List
 import scraper
 from config import Config
@@ -29,7 +28,7 @@ def save(data: List[dict], filename: str) -> None:
 if __name__ == "__main__":
     config = Config()
     petal_rankings = []
-    today =  datetime.now().strftime("%m/%d/%Y")
+    today =  config.today
     for item in config.list:
         web_scraper = scraper.determine_scraper(item["url"], item["name"])
         rankings: List[Dict] = web_scraper.get_rankings()
@@ -43,4 +42,4 @@ if __name__ == "__main__":
  
     # print("PETAL RANKINGS")
     # pprint(petal_rankings)
-    save(petal_rankings, 'petal_rankings.csv')
+    save(petal_rankings, config.outputfile)
