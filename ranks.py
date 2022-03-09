@@ -1,26 +1,15 @@
 from typing import Dict, List
-
 import scraper
-
+from config import Config
+from pprint import pprint 
 
 if __name__ == "__main__":
     # urls of web pages to scrape
-    urls = [
-        ("https://www.creditkarma.com/credit-cards/student-cards", "Student Cards"),
-        ("https://www.creditkarma.com/credit-cards/no-annual-fee", "No Annual Fee"),
-        ("https://www.creditkarma.com/credit-cards/fair-credit", "Fair Credit"),
-        ("https://www.creditkarma.com/credit-cards/bad-credit", "Bad Credit"),
-        ("https://www.creditkarma.com/credit-cards/no-credit", "Limited Credit"),
-        ("https://www.creditkarma.com/credit-cards/good-credit", "Good Credit"),
-        ("https://www.creditkarma.com/credit-cards/cash-back-cards", "Cash Back Cards"),
-        ("https://www.creditkarma.com/credit-cards/rewards-cards", "Rewards"),
-    ]
-
-    for url, page_title in urls:
-        web_scraper = scraper.determine_scraper(url, page_title)
+    config = Config()
+    for item in config.list:
+        web_scraper = scraper.determine_scraper(item["url"], item["name"])
         rankings: List[Dict] = web_scraper.get_rankings()
-
-        print(rankings)
+        pprint(rankings)
 
         # save into file
         # compile csv file.
