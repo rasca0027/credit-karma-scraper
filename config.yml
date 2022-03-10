@@ -1,19 +1,20 @@
-sources: 
+---
+sources:
   - name: Student Cards
-    url:   https://www.creditkarma.com/credit-cards/student-cards 
+    url: https://www.creditkarma.com/credit-cards/student-cards
   - name: No Annual Fee
-    url:   https://www.creditkarma.com/credit-cards/no-annual-fee 
+    url: https://www.creditkarma.com/credit-cards/no-annual-fee
   - name: Fair Credit
-    url:   https://www.creditkarma.com/credit-cards/fair-credit 
+    url: https://www.creditkarma.com/credit-cards/fair-credit
   - name: Bad Credit
-    url:   https://www.creditkarma.com/credit-cards/bad-credit 
+    url: https://www.creditkarma.com/credit-cards/bad-credit
   - name: Limited Credit
-    url:   https://www.creditkarma.com/credit-cards/no-credit 
+    url: https://www.creditkarma.com/credit-cards/no-credit
   - name: Good Credit
-    url:   https://www.creditkarma.com/credit-cards/good-credit 
+    url: https://www.creditkarma.com/credit-cards/good-credit
   - name: Cash Back Cards
-    url:   https://www.creditkarma.com/credit-cards/cash-back-cards 
+    url: https://www.creditkarma.com/credit-cards/cash-back-cards
   - name: Rewards
-    url:   https://www.creditkarma.com/credit-cards/rewards-cards 
+    url: https://www.creditkarma.com/credit-cards/rewards-cards
 
 outputfile: "output/petal_rankings_{date}.csv"
