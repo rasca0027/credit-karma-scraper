@@ -54,20 +54,18 @@ class ExportCardRankingsJob:
         today = config.today
 
         petal_rankings = []
+        
         for item in config.list:
             rankings = self._get_card_rankings(item["name"], item["url"])
             self._display_ranking(rankings, item["name"])
-            record = {
+            petal_rankings.append({
                 "date": today,
                 "page_title": item["name"],
                 "p1_rank": self._rank(self.PETAL1, rankings) or "N/A",
                 "p2_rank": self._rank(self.PETAL2, rankings) or "N/A",
-            }
-
-            petal_rankings.append(record)
+            })
 
         self._save(petal_rankings, config.outputfile)
-
 
 if __name__ == "__main__":
     app = ExportCardRankingsJob()

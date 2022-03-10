@@ -4,6 +4,10 @@ import yaml
 import datetime
 
 DEFAULT_CONFIG = "config.yml"
+SOURCES_NODE = "sources"
+OUTPUTFILE_NODE = "outputfile"
+DATE_TAG = "{date}"
+DATE_FORMAT = "%Y-%m-%d"
 
 class Config:
     def __init__(self, config_file: str = DEFAULT_CONFIG) -> None:
@@ -15,12 +19,12 @@ class Config:
 
     @property
     def list(self) -> list:
-        return self._config["sources"]
+        return self._config[SOURCES_NODE]
 
     @property
     def today(self) -> str:
-        return datetime.datetime.now().strftime("%Y-%m-%d")
+        return datetime.datetime.now().strftime(DATE_FORMAT)
 
     @property
     def outputfile(self) -> str:
-        return self._config["outputfile"].replace("{date}", self.today)
+        return self._config[OUTPUTFILE_NODE].replace(DATE_TAG, self.today)
