@@ -18,10 +18,10 @@ class ExportCardRankingsJob:
     def __init__(self, dry_run: bool = False) -> None:
         self.dry_run = dry_run
 
-    def _rank(self, card: str, rankings: List[dict]) -> Union[int, str]:
+    def _rank(self, card: str, rankings: List[dict]) -> Union[int, None]:
         """returns the rank for a card in a ranking list"""
         ranking = [item["rank"] for item in rankings if re.search(card, item["card"])]
-        return ranking[0] if ranking else "N/A"
+        return ranking[0] if ranking else None
 
     def _get_card_rankings(self, name: str, url: str) -> List[Dict]:
         """calls the scraper that reads the url and returns the rankings"""
@@ -60,8 +60,8 @@ class ExportCardRankingsJob:
             record = {
                 "date": today,
                 "page_title": item["name"],
-                "p1_rank": self._rank(self.PETAL1, rankings),
-                "p2_rank": self._rank(self.PETAL2, rankings),
+                "p1_rank": self._rank(self.PETAL1, rankings) or "N/A",
+                "p2_rank": self._rank(self.PETAL2, rankings) or "N/A",
             }
 
             petal_rankings.append(record)
