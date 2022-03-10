@@ -16,5 +16,4 @@ sources:
   - name: Rewards
     url:   https://www.creditkarma.com/credit-cards/rewards-cards 
 
-outputfile: "petal_rankings_{date}.csv"
-
+outputfile: "output/petal_rankings_{date}.csv"
